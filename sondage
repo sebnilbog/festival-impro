@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Festival d'Improvisation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        .section h2 {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        .checkbox-item label,
+        .radio-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        .hidden {
+            display: none;
+        }
+        .competences-section {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #667eea;
+        }
+        .competences-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .competences-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .competence-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+        .competence-item input[type="checkbox"] {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .competence-item label {
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .autre-competence {
+            grid-column: 1 / -1;
+            margin-top: 0.5rem;
+        }
+        .helper-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 0.4rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        button {
+            flex: 1;
+            padding: 1rem;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-reset {
+            background: #eee;
+            color: #333;
+        }
+        .btn-reset:hover {
+            background: #ddd;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .footer {
+            background: #f5f5f5;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        .competences-subsection {
+            margin-bottom: 2rem;
+        }
+        .competences-subsection p {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 600px) {
+            .competences-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 Festival d'Impro</h1>
+            <p>Questionnaire de participation</p>
+        </div>
+
+        <div class="content">
+            <div class="note">
+                <strong>Merci de votre intérêt !</strong> Ce questionnaire nous aide à mieux comprendre vos attentes et construire ensemble un festival mémorable. Vos réponses sont précieuses. 🎪
+            </div>
+
+            <form id="festivalForm">
+                <div class="section">
+                    <h2>À propos de vous</h2>
+                    <div class="form-group">
+                        <label for="nom">Quel est votre nom ?</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Quel est votre adresse email ?</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Votre niveau d'expérience en impro ?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="niv_aucune" name="niveau" value="aucune">
+                                <label for="niv_aucune">Aucune : je suis dans le public et ça me suffit</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niv_curieux" name="niveau" value="curieux">
+                                <label for="niv_curieux">Curieux·se (découvrir l'impro)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niv_debutant" name="niveau" value="débutant">
+                                <label for="niv_debutant">Débutant·e (premiers pas)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niv_intermediaire" name="niveau" value="intermédiaire">
+                                <label for="niv_intermediaire">Intermédiaire (pratique régulière)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niv_avance" name="niveau" value="avancé">
+                                <label for="niv_avance">Avancé·e (compagnie / expérience solide)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Formats que vous aimeriez voir</h2>
+                    <div class="form-group">
+                        <label>Qu'est-ce qui vous attire le plus ? (vous pouvez cocher plusieurs options)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fmt_initiation" name="format" value="initiation">
+                                <label for="fmt_initiation">Initiation à l'impro</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fmt_workshops" name="format" value="workshops">
+                                <label for="fmt_workshops">Workshops thématiques</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fmt_spectacles" name="format" value="spectacles">
+                                <label for="fmt_spectacles">Spectacles de compagnies</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fmt_spectacles_workshop" name="format" value="spectacles_workshop">
+                                <label for="fmt_spectacles_workshop">Spectacles issus des workshops sur place</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fmt_autre" name="format" value="autre_format">
+                                <label for="fmt_autre">Autre (à préciser)</label>
+                            </div>
+                        </div>
+                        <div id="autre-format" class="hidden">
+                            <input type="text" name="autre_format_text" placeholder="Décrivez votre idée...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Comment vous aimeriez participer ?</h2>
+                    <div class="form-group">
+                        <label>Sélectionnez vos modes de participation (plusieurs possibles)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_spectateur" name="participation" value="spectateur">
+                                <label for="part_spectateur">En tant que public / spectateur·rice</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_formation" name="participation" value="formation">
+                                <label for="part_formation">Pour suivre une formation / un atelier</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_animer" name="participation" value="animer">
+                                <label for="part_animer">Pour animer un atelier / coacher</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_spectacle" name="participation" value="spectacle">
+                                <label for="part_spectacle">Pour présenter ma compagnie / mon spectacle</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_benevole" name="participation" value="benevole">
+                                <label for="part_benevole">En tant que bénévole (logistique, accueil...)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="part_orga" name="participation" value="orga">
+                                <label for="part_orga">Je veux bien rejoindre l'organisation (core team)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="competences-section" class="hidden competences-section">
+                        <h3>💪 Quelles compétences pouvez-vous apporter ?</h3>
+
+                        <div id="competences-benevole" class="hidden competences-subsection">
+                            <p>📋 Si vous êtes bénévole :</p>
+                            <div class="competences-grid">
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_accueil" name="competences_benevole" value="accueil">
+                                    <label for="comp_accueil">Accueil et bénévolat généraliste</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_montage" name="competences_benevole" value="montage">
+                                    <label for="comp_montage">Mise en place et démontage</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_catering" name="competences_benevole" value="catering">
+                                    <label for="comp_catering">Catering et restauration</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_ticket" name="competences_benevole" value="ticket">
+                                    <label for="comp_ticket">Ticketing et gestion des accès</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_securite" name="competences_benevole" value="securite">
+                                    <label for="comp_securite">Sécurité et accueil du public</label>
+                                </div>
+                                <div class="competence-item autre-competence">
+                                    <input type="checkbox" id="comp_autre_benevole" name="competences_benevole" value="autre">
+                                    <label for="comp_autre_benevole">Autre (à préciser)</label>
+                                </div>
+                            </div>
+                            <div id="autre-competence-benevole" class="hidden" style="margin-top: 1rem;">
+                                <input type="text" name="autre_competence_benevole_text" placeholder="Décrivez votre tâche...">
+                            </div>
+                        </div>
+
+                        <div id="competences-orga" class="hidden competences-subsection">
+                            <p>🎯 Si vous rejoignez l'organisation :</p>
+                            <div class="competences-grid">
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_coordination" name="competences_orga" value="coordination">
+                                    <label for="comp_coordination">Coordination générale</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_admin" name="competences_orga" value="admin">
+                                    <label for="comp_admin">Gestion administrative</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_budget" name="competences_orga" value="budget">
+                                    <label for="comp_budget">Gestion budgétaire / Fundraising</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_logistique" name="competences_orga" value="logistique">
+                                    <label for="comp_logistique">Logistique technique</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_commu" name="competences_orga" value="commu">
+                                    <label for="comp_commu">Communication et promotion</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_artistes" name="competences_orga" value="artistes">
+                                    <label for="comp_artistes">Gestion des artistes</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_technique" name="competences_orga" value="technique">
+                                    <label for="comp_technique">Technique son et lumière</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_deco" name="competences_orga" value="deco">
+                                    <label for="comp_deco">Décoration et aménagement</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_access" name="competences_orga" value="access">
+                                    <label for="comp_access">Accessibilité et inclusion</label>
+                                </div>
+                                <div class="competence-item">
+                                    <input type="checkbox" id="comp_graphisme" name="competences_orga" value="graphisme">
+                                    <label for="comp_graphisme">Graphisme et design</label>
+                                </div>
+                                <div class="competence-item autre-competence">
+                                    <input type="checkbox" id="comp_autre_orga" name="competences_orga" value="autre">
+                                    <label for="comp_autre_orga">Autre (à préciser)</label>
+                                </div>
+                            </div>
+                            <div id="autre-competence-orga" class="hidden" style="margin-top: 1rem;">
+                                <input type="text" name="autre_competence_orga_text" placeholder="Décrivez votre responsabilité...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Votre disponibilité</h2>
+                    <div class="form-group">
+                        <label>Vous participeriez à combien de jours de festival ?</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="dur_1" name="duree" value="1 jour">
+                                <label for="dur_1">1 jour</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dur_2-3" name="duree" value="2-3 jours">
+                                <label for="dur_2-3">2-3 jours</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dur_5" name="duree" value="5 jours">
+                                <label for="dur_5">5 jours</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="dur_7" name="duree" value="7 jours">
+                                <label for="dur_7">7 jours (quelle folie !)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Je viendrais...</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="horaire_jour" name="horaire" value="jour">
+                                <label for="horaire_jour">Plutôt le jour (matin/après-midi)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="horaire_soir" name="horaire" value="soir">
+                                <label for="horaire_soir">Plutôt le soir</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="horaire_flexible" name="horaire" value="toute_journee">
+                                <label for="horaire_flexible">Toute la journée (jour et soir)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>L'essentiel pour réussir</h2>
+                    <div class="form-group">
+                        <label for="essentiel">Qu'est-ce qui est vital pour vous dans un festival d'impro ? (ambiance, logistique, artistes, etc.)</label>
+                        <textarea id="essentiel" name="essentiel" placeholder="Par exemple : une bonne ambiance conviviale, du bon matériel son, la qualité des spectacles..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="suggestions">Remarques, suggestions, idées farfelues ? 🎪</label>
+                        <textarea id="suggestions" name="suggestions" placeholder="Partagez vos idées les plus folles !"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Si vous êtes intéressé·e pour nous aider, comment vous contacter ?</label>
+                        <input type="text" id="contact" name="contact" placeholder="Téléphone, Instagram, Discord, etc.">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Rester en contact</h2>
+                    <div class="form-group">
+                        <label>Je veux être tenu au courant de...</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mail_moulin" name="mailing" value="moulin">
+                                <label for="mail_moulin">La suite des activités du Moulin (mailing list générale)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mail_festival" name="mailing" value="festival">
+                                <label for="mail_festival">Ce festival d'impro uniquement (mailing list dédiée au festival)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="reset" class="btn-reset">Réinitialiser</button>
+                    <button type="submit" class="btn-submit">Envoyer mes réponses ✨</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>Merci de votre participation ! Nous avons hâte de construire ce festival avec vous 🎭</p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('festivalForm');
+        const competencesSection = document.getElementById('competences-section');
+        const competencesBenevole = document.getElementById('competences-benevole');
+        const competencesOrga = document.getElementById('competences-orga');
+        const autrFormatDiv = document.getElementById('autre-format');
+        const autreCompetenceBenevoleDiv = document.getElementById('autre-competence-benevole');
+        const autreCompetenceOrgaDiv = document.getElementById('autre-competence-orga');
+
+        function updateCompetencesVisibility() {
+            const benevole = document.getElementById('part_benevole').checked;
+            const orga = document.getElementById('part_orga').checked;
+            competencesSection.classList.toggle('hidden', !(benevole || orga));
+            competencesBenevole.classList.toggle('hidden', !benevole);
+            competencesOrga.classList.toggle('hidden', !orga);
+        }
+
+        function updateAutreFormatVisibility() {
+            const autreFormat = document.getElementById('fmt_autre').checked;
+            autrFormatDiv.classList.toggle('hidden', !autreFormat);
+        }
+
+        function updateAutreCompetenceBenevole() {
+            const autreComp = document.getElementById('comp_autre_benevole').checked;
+            autreCompetenceBenevoleDiv.classList.toggle('hidden', !autreComp);
+        }
+
+        function updateAutreCompetenceOrga() {
+            const autreComp = document.getElementById('comp_autre_orga').checked;
+            autreCompetenceOrgaDiv.classList.toggle('hidden', !autreComp);
+        }
+
+        document.getElementById('part_benevole').addEventListener('change', updateCompetencesVisibility);
+        document.getElementById('part_orga').addEventListener('change', updateCompetencesVisibility);
+        document.getElementById('fmt_autre').addEventListener('change', updateAutreFormatVisibility);
+        document.getElementById('comp_autre_benevole').addEventListener('change', updateAutreCompetenceBenevole);
+        document.getElementById('comp_autre_orga').addEventListener('change', updateAutreCompetenceOrga);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = {
+                timestamp: new Date().toLocaleString('fr-FR'),
+                reponses: {}
+            };
+
+            for (let [key, value] of formData.entries()) {
+                if (!data.reponses[key]) {
+                    data.reponses[key] = [];
+                }
+                data.reponses[key].push(value);
+            }
+
+            alert('🎭 Merci ! Vos réponses ont été enregistrées.\n\nNous vous recontacterons prochainement pour les détails du festival.');
+            console.log('Données du formulaire:', data);
+            form.reset();
+            updateCompetencesVisibility();
+            updateAutreFormatVisibility();
+            updateAutreCompetenceBenevole();
+            updateAutreCompetenceOrga();
+        });
+    </script>
+</body>
+</html>
