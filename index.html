@@ -215,7 +215,7 @@
         <h1>Festival d'Impro</h1>
         <p class="subtitle">Questionnaire - On envisage un festival qui aurait lieu aux alentours du 26 avril - 2 mai. On veut vraiment savoir ce que VOUS en pensez !</p>
 
-        <form id="questionnaireForm">
+        <form id="questionnaireForm" action="https://script.google.com/macros/s/AKfycbyLV8mJhw9m0ymm3AD4g6EZ1jnPAs6FpFiIl3i2d8NjEAO7Thty-jU7ppfJUK8ZugSUfQ/exec" method="POST" target="hidden_iframe">
             <div class="section">
                 <h2 class="section-title">A propos de vous</h2>
 
@@ -499,6 +499,8 @@
         </form>
     </div>
 
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
     <script>
         const formatAutreCheckbox = document.getElementById('format5');
         const formatAutreInput = document.getElementById('formatAutreInput');
@@ -535,46 +537,35 @@
             competencesOrgaAutre.classList.toggle('hidden', !this.checked);
         });
 
-        document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        let formSubmitted = false;
+        const questionnaireForm = document.getElementById('questionnaireForm');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const submitButton = document.querySelector('button[type="submit"]');
 
-            const form = this;
-            const formData = new FormData(form);
-            const loadingMessage = document.getElementById('loadingMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            const successMessage = document.getElementById('successMessage');
-            const submitButton = document.querySelector('button[type="submit"]');
-
+        questionnaireForm.addEventListener('submit', function() {
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
             loadingMessage.style.display = 'block';
             submitButton.disabled = true;
+            formSubmitted = true;
+        });
 
-            fetch('https://script.google.com/macros/s/AKfycbyLV8mJhw9m0ymm3AD4g6EZ1jnPAs6FpFiIl3i2d8NjEAO7Thty-jU7ppfJUK8ZugSUfQ/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            })
-            .then(function() {
-                loadingMessage.style.display = 'none';
-                successMessage.style.display = 'block';
-                form.reset();
-                updateCompetencesSections();
-                competencesBenevoleAutre.classList.add('hidden');
-                competencesOrgaAutre.classList.add('hidden');
-                formatAutreInput.classList.add('hidden');
-                setTimeout(function() {
-                    submitButton.disabled = false;
-                    successMessage.style.display = 'none';
-                }, 3000);
-            })
-            .catch(function(error) {
-                console.error('Erreur:', error);
-                loadingMessage.style.display = 'none';
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = 'Erreur lors de l envoi. Veuillez reessayer.';
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (!formSubmitted) return;
+            formSubmitted = false;
+            loadingMessage.style.display = 'none';
+            successMessage.style.display = 'block';
+            questionnaireForm.reset();
+            updateCompetencesSections();
+            competencesBenevoleAutre.classList.add('hidden');
+            competencesOrgaAutre.classList.add('hidden');
+            formatAutreInput.classList.add('hidden');
+            setTimeout(function() {
                 submitButton.disabled = false;
-            });
+                successMessage.style.display = 'none';
+            }, 3000);
         });
     </script>
 </body>
