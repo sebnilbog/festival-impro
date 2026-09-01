@@ -172,6 +172,11 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .error-message {
             color: #d32f2f;
             font-size: 14px;
@@ -207,13 +212,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎭 Festival d'Impro</h1>
+        <h1>Festival d'Impro</h1>
         <p class="subtitle">Questionnaire - On envisage un festival qui aurait lieu aux alentours du 26 avril - 2 mai. On veut vraiment savoir ce que VOUS en pensez !</p>
 
         <form id="questionnaireForm">
-            <!-- À PROPOS DE VOUS -->
             <div class="section">
-                <h2 class="section-title">À propos de vous</h2>
+                <h2 class="section-title">A propos de vous</h2>
 
                 <div class="form-group">
                     <label for="nom" class="required">Quel est votre nom ?</label>
@@ -226,33 +230,32 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Votre niveau d'expérience en impro ?</label>
+                    <label>Votre niveau d'experience en impro ?</label>
                     <div class="radio-group">
                         <div class="radio-item">
-                            <input type="radio" id="niveau1" name="niveau" value="Aucune expérience">
-                            <label for="niveau1">Aucune expérience</label>
+                            <input type="radio" id="niveau1" name="niveau" value="Aucune experience">
+                            <label for="niveau1">Aucune experience</label>
                         </div>
                         <div class="radio-item">
                             <input type="radio" id="niveau2" name="niveau" value="Curieux / curieuse">
                             <label for="niveau2">Curieux / curieuse</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="niveau3" name="niveau" value="Débutant / débutante">
-                            <label for="niveau3">Débutant / débutante</label>
+                            <input type="radio" id="niveau3" name="niveau" value="Debutant / debutante">
+                            <label for="niveau3">Debutant / debutante</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="niveau4" name="niveau" value="Intermédiaire">
-                            <label for="niveau4">Intermédiaire</label>
+                            <input type="radio" id="niveau4" name="niveau" value="Intermediaire">
+                            <label for="niveau4">Intermediaire</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="niveau5" name="niveau" value="Avancé / avancée">
-                            <label for="niveau5">Avancé / avancée</label>
+                            <input type="radio" id="niveau5" name="niveau" value="Avance / avancee">
+                            <label for="niveau5">Avance / avancee</label>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- FORMATS -->
             <div class="section">
                 <h2 class="section-title">Formats que vous aimeriez voir</h2>
 
@@ -260,12 +263,12 @@
                     <label>Qu'est-ce qui vous attire le plus ? (vous pouvez cocher plusieurs options)</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
-                            <input type="checkbox" id="format1" name="format" value="Initiation / découverte">
-                            <label for="format1">Initiation / découverte</label>
+                            <input type="checkbox" id="format1" name="format" value="Initiation / decouverte">
+                            <label for="format1">Initiation / decouverte</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="format2" name="format" value="Workshops thématiques">
-                            <label for="format2">Workshops thématiques</label>
+                            <input type="checkbox" id="format2" name="format" value="Workshops thematiques">
+                            <label for="format2">Workshops thematiques</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="format3" name="format" value="Spectacles de compagnies">
@@ -279,19 +282,18 @@
                             <input type="checkbox" id="format5" name="format" value="Autre">
                             <label for="format5">Autre</label>
                             <div id="formatAutreInput" class="sub-input hidden">
-                                <input type="text" name="format_autre" placeholder="Précisez...">
+                                <input type="text" name="format_autre" placeholder="Precisez...">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PARTICIPATION -->
             <div class="section">
                 <h2 class="section-title">Comment vous aimeriez participer ?</h2>
 
                 <div class="form-group">
-                    <label>Sélectionnez vos modes de participation (plusieurs possibles)</label>
+                    <label>Selectionnez vos modes de participation (plusieurs possibles)</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
                             <input type="checkbox" id="participation1" name="participation" value="Public / spectateur">
@@ -306,12 +308,12 @@
                             <label for="participation3">Animer un atelier</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="participation4" name="participation" value="Présenter ma compagnie">
-                            <label for="participation4">Présenter ma compagnie</label>
+                            <input type="checkbox" id="participation4" name="participation" value="Presenter ma compagnie">
+                            <label for="participation4">Presenter ma compagnie</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="participation5" name="participation" value="Bénévole">
-                            <label for="participation5">Bénévole</label>
+                            <input type="checkbox" id="participation5" name="participation" value="Benevole">
+                            <label for="participation5">Benevole</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="participation6" name="participation" value="Organisation">
@@ -321,18 +323,17 @@
                 </div>
             </div>
 
-            <!-- COMPÉTENCES BÉNÉVOLE -->
             <div id="competencesBenevoleSection" class="section hidden">
-                <h2 class="section-title">Compétences - Bénévole</h2>
-                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Quelles compétences êtes-vous prêt·e·s à apporter ?</p>
+                <h2 class="section-title">Competences - Benevole</h2>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Quelles competences etes-vous prets a apporter ?</p>
                 <div class="competences-grid">
                     <div class="competence-item">
                         <input type="checkbox" id="comp_b1" name="competences_benevole" value="Accueil">
                         <label for="comp_b1">Accueil</label>
                     </div>
                     <div class="competence-item">
-                        <input type="checkbox" id="comp_b2" name="competences_benevole" value="Montage / démontage">
-                        <label for="comp_b2">Montage / démontage</label>
+                        <input type="checkbox" id="comp_b2" name="competences_benevole" value="Montage / demontage">
+                        <label for="comp_b2">Montage / demontage</label>
                     </div>
                     <div class="competence-item">
                         <input type="checkbox" id="comp_b3" name="competences_benevole" value="Catering">
@@ -343,8 +344,8 @@
                         <label for="comp_b4">Ticketing</label>
                     </div>
                     <div class="competence-item">
-                        <input type="checkbox" id="comp_b5" name="competences_benevole" value="Sécurité">
-                        <label for="comp_b5">Sécurité</label>
+                        <input type="checkbox" id="comp_b5" name="competences_benevole" value="Securite">
+                        <label for="comp_b5">Securite</label>
                     </div>
                     <div class="competence-item">
                         <input type="checkbox" id="comp_b6" name="competences_benevole" value="Autre">
@@ -352,14 +353,13 @@
                     </div>
                 </div>
                 <div id="competencesBenevoleAutre" class="sub-input hidden" style="margin-left: 0; margin-top: 12px;">
-                    <input type="text" name="competences_benevole_autre" placeholder="Précisez vos autres compétences...">
+                    <input type="text" name="competences_benevole_autre" placeholder="Precisez vos autres competences...">
                 </div>
             </div>
 
-            <!-- COMPÉTENCES ORGA -->
             <div id="competencesOrgaSection" class="section hidden">
-                <h2 class="section-title">Compétences - Organisation</h2>
-                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Quelles compétences êtes-vous prêt·e·s à apporter ?</p>
+                <h2 class="section-title">Competences - Organisation</h2>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">Quelles competences etes-vous prets a apporter ?</p>
                 <div class="competences-grid">
                     <div class="competence-item">
                         <input type="checkbox" id="comp_o1" name="competences_orga" value="Coordination">
@@ -386,16 +386,16 @@
                         <label for="comp_o6">Gestion des artistes</label>
                     </div>
                     <div class="competence-item">
-                        <input type="checkbox" id="comp_o7" name="competences_orga" value="Technique son/lumière">
-                        <label for="comp_o7">Technique son/lumière</label>
+                        <input type="checkbox" id="comp_o7" name="competences_orga" value="Technique son/lumiere">
+                        <label for="comp_o7">Technique son/lumiere</label>
                     </div>
                     <div class="competence-item">
-                        <input type="checkbox" id="comp_o8" name="competences_orga" value="Décoration">
-                        <label for="comp_o8">Décoration</label>
+                        <input type="checkbox" id="comp_o8" name="competences_orga" value="Decoration">
+                        <label for="comp_o8">Decoration</label>
                     </div>
                     <div class="competence-item">
-                        <input type="checkbox" id="comp_o9" name="competences_orga" value="Accessibilité">
-                        <label for="comp_o9">Accessibilité</label>
+                        <input type="checkbox" id="comp_o9" name="competences_orga" value="Accessibilite">
+                        <label for="comp_o9">Accessibilite</label>
                     </div>
                     <div class="competence-item">
                         <input type="checkbox" id="comp_o10" name="competences_orga" value="Graphisme">
@@ -407,16 +407,15 @@
                     </div>
                 </div>
                 <div id="competencesOrgaAutre" class="sub-input hidden" style="margin-left: 0; margin-top: 12px;">
-                    <input type="text" name="competences_orga_autre" placeholder="Précisez vos autres compétences...">
+                    <input type="text" name="competences_orga_autre" placeholder="Precisez vos autres competences...">
                 </div>
             </div>
 
-            <!-- DISPONIBILITÉ -->
             <div class="section">
-                <h2 class="section-title">Votre disponibilité</h2>
+                <h2 class="section-title">Votre disponibilite</h2>
 
                 <div class="form-group">
-                    <label>Vous participeriez à combien de jours de festival ?</label>
+                    <label>Vous participeriez a combien de jours de festival ?</label>
                     <div class="radio-group">
                         <div class="radio-item">
                             <input type="radio" id="duree1" name="duree" value="1 jour">
@@ -449,16 +448,15 @@
                             <label for="horaire2">Soir</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" id="horaire3" name="horaire" value="Toute la journée (jour et soir)">
-                            <label for="horaire3">Toute la journée (jour et soir)</label>
+                            <input type="radio" id="horaire3" name="horaire" value="Toute la journee (jour et soir)">
+                            <label for="horaire3">Toute la journee (jour et soir)</label>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ÉLÉMENTS ESSENTIELS -->
             <div class="section">
-                <h2 class="section-title">L'essentiel pour réussir</h2>
+                <h2 class="section-title">L'essentiel pour reussir</h2>
 
                 <div class="form-group">
                     <label for="essentiel">Qu'est-ce qui est vital pour vous dans un festival d'impro ? (ambiance, logistique, artistes, etc.)</label>
@@ -466,48 +464,45 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="suggestions">Remarques, suggestions, idées farfelues ? 🎪</label>
+                    <label for="suggestions">Remarques, suggestions, idees farfelues ?</label>
                     <textarea id="suggestions" name="suggestions"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="contact">Si vous êtes intéressé·e pour nous aider, comment vous contacter ?</label>
-                    <input type="text" id="contact" name="contact" placeholder="Téléphone, Instagram, Discord, etc.">
+                    <label for="contact">Si vous etes interesse-e pour nous aider, comment vous contacter ?</label>
+                    <input type="text" id="contact" name="contact" placeholder="Telephone, Instagram, Discord, etc.">
                 </div>
             </div>
 
-            <!-- MAILING LISTS -->
             <div class="section">
                 <h2 class="section-title">Rester en contact</h2>
 
                 <div class="form-group">
-                    <label>Je veux être tenu au courant de...</label>
+                    <label>Je veux etre tenu au courant de...</label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
                             <input type="checkbox" id="mailing1" name="mailing" value="Moulin mailing list">
-                            <label for="mailing1">La suite des activités du Moulin (mailing list générale)</label>
+                            <label for="mailing1">La suite des activites du Moulin (mailing list generale)</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="mailing2" name="mailing" value="Festival mailing list">
-                            <label for="mailing2">Ce festival d'impro uniquement (mailing list dédiée au festival)</label>
+                            <label for="mailing2">Ce festival d'impro uniquement (mailing list dediee au festival)</label>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SUBMIT BUTTON -->
-            <button type="submit">Envoyer mes réponses 🎭</button>
+            <button type="submit">Envoyer mes reponses</button>
             <div class="loading" id="loadingMessage">Envoi en cours</div>
             <div class="error-message" id="errorMessage"></div>
-            <div class="success-message" id="successMessage">✅ Merci pour vos réponses !</div>
+            <div class="success-message" id="successMessage">Merci pour vos reponses !</div>
         </form>
     </div>
 
     <script>
-        // Gestion des champs conditionnels
         const formatAutreCheckbox = document.getElementById('format5');
         const formatAutreInput = document.getElementById('formatAutreInput');
-        
+
         formatAutreCheckbox.addEventListener('change', function() {
             formatAutreInput.classList.toggle('hidden', !this.checked);
         });
@@ -523,7 +518,7 @@
         function updateCompetencesSections() {
             const showBenevole = benevoleCheckbox.checked;
             const showOrga = orgaCheckbox.checked;
-            
+
             competencesBenevoleSection.classList.toggle('hidden', !showBenevole);
             competencesOrgaSection.classList.toggle('hidden', !showOrga);
         }
@@ -532,64 +527,52 @@
             checkbox.addEventListener('change', updateCompetencesSections);
         });
 
-        // Gestion du "Autre" pour compétences bénévole
         document.getElementById('comp_b6').addEventListener('change', function() {
             competencesBenevoleAutre.classList.toggle('hidden', !this.checked);
         });
 
-        // Gestion du "Autre" pour compétences orga
         document.getElementById('comp_o11').addEventListener('change', function() {
             competencesOrgaAutre.classList.toggle('hidden', !this.checked);
         });
 
-        // Gestion du submit du formulaire
         document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const formData = new FormData(this);
+            const form = this;
+            const formData = new FormData(form);
             const loadingMessage = document.getElementById('loadingMessage');
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
             const submitButton = document.querySelector('button[type="submit"]');
 
-            // Reset des messages
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
             loadingMessage.style.display = 'block';
             submitButton.disabled = true;
 
-            // Convertir FormData en objet pour la requête
-            const data = Object.fromEntries(formData);
-
-           fetch('https://script.google.com/macros/s/AKfycbyLV8mJhw9m0ymm3AD4g6EZ1jnPAs6FpFiIl3i2d8NjEAO7Thty-jU7ppfJUK8ZugSUfQ/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbyLV8mJhw9m0ymm3AD4g6EZ1jnPAs6FpFiIl3i2d8NjEAO7Thty-jU7ppfJUK8ZugSUfQ/exec', {
                 method: 'POST',
+                mode: 'no-cors',
                 body: formData
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(result => {
-                console.log('Succès:', result);
+            .then(function() {
                 loadingMessage.style.display = 'none';
                 successMessage.style.display = 'block';
-                document.getElementById('questionnaireForm').reset();
+                form.reset();
                 updateCompetencesSections();
                 competencesBenevoleAutre.classList.add('hidden');
                 competencesOrgaAutre.classList.add('hidden');
                 formatAutreInput.classList.add('hidden');
-                setTimeout(() => {
+                setTimeout(function() {
                     submitButton.disabled = false;
                     successMessage.style.display = 'none';
                 }, 3000);
             })
-            .catch(error => {
+            .catch(function(error) {
                 console.error('Erreur:', error);
                 loadingMessage.style.display = 'none';
                 errorMessage.style.display = 'block';
-                errorMessage.textContent = 'Erreur lors de l\'envoi: ' + error.message + '. Veuillez réessayer.';
+                errorMessage.textContent = 'Erreur lors de l envoi. Veuillez reessayer.';
                 submitButton.disabled = false;
             });
         });
